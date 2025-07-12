@@ -1,30 +1,41 @@
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { fontOptions } from "@/lib/fonts";
+
 interface FontSelectorProps {
   label: string;
   value: string;
   onChange: (value: string) => void;
-  options: { name: string; value: string }[];
+  options?: { name: string; value: string }[];
 }
 
 export default function FontSelector({
   label,
   value,
   onChange,
-  options,
+  options = fontOptions,
 }: FontSelectorProps) {
   return (
     <div className="space-y-2 w-full">
-      <label className="block text-sm font-medium">{label}</label>
-      <select
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        className="w-full p-2 border rounded-md"
-      >
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.name}
-          </option>
-        ))}
-      </select>
+      <Label htmlFor={`${label}-selector`}>{label}</Label>
+      <Select value={value} onValueChange={onChange}>
+        <SelectTrigger id={`${label}-selector`}>
+          <SelectValue placeholder="Select font" />
+        </SelectTrigger>
+        <SelectContent>
+          {options.map((option) => (
+            <SelectItem key={option.value} value={option.value}>
+              {option.name}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 }

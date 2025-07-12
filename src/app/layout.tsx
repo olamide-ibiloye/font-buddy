@@ -101,7 +101,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${roboto.variable} ${openSans.variable} ${montserrat.variable} ${lato.variable} ${poppins.variable} ${playfairDisplay.variable} ${merriweather.variable} ${sourceSansPro.variable} ${raleway.variable} ${nunito.variable} antialiased max-w-5xl  mx-auto max-md:px-5`}
+        className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${roboto.variable} ${openSans.variable} ${montserrat.variable} ${lato.variable} ${poppins.variable} ${playfairDisplay.variable} ${merriweather.variable} ${sourceSansPro.variable} ${raleway.variable} ${nunito.variable} antialiased`}
       >
         <ThemeProvider
           attribute="class"
@@ -109,7 +109,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <main className="flex flex-col gap-8 flex-1">{children}</main>
+          <main className="flex flex-col gap-8 flex-1 max-w-4xl  mx-auto max-md:px-5">
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

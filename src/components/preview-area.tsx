@@ -1,3 +1,5 @@
+import { Card, CardContent } from "@/components/ui/card";
+import { Textarea } from "@/components/ui/textarea";
 import { useFontStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
@@ -33,38 +35,42 @@ export default function PreviewArea() {
   } = useFontStore();
 
   return (
-    <div className="min-h-[400px] flex flex-col justify-center">
-      <div className="max-w-2xl mx-auto w-full space-y-6">
-        <div>
-          <textarea
-            value={headingText}
-            onChange={(e) => setHeadingText(e.target.value)}
-            className={cn(
-              "w-full bg-transparent text-center border-none outline-none resize-none overflow-hidden font-bold leading-tight",
-              `font-[${headingFont}]`
-            )}
-            style={{
-              fontFamily: headingFont,
-              fontSize: headingSizeMap[headingSize] || "6rem", // Default to 6rem if size not found
-            }}
-          />
+    <Card className="w-full  bg-card/50 backdrop-blur-sm">
+      <CardContent className="p-8">
+        <div className="min-h-[300px] max-w-3xl mx-auto flex flex-col justify-center">
+          <div className="w-full space-y-6">
+            <div>
+              <Textarea
+                value={headingText}
+                onChange={(e) => setHeadingText(e.target.value)}
+                className={cn(
+                  "w-full bg-transparent text-center shadow-none border-none outline-none resize-none overflow-hidden font-bold leading-tight",
+                  `font-[${headingFont}]`
+                )}
+                style={{
+                  fontFamily: headingFont,
+                  fontSize: headingSizeMap[headingSize] || "6rem",
+                }}
+              />
+            </div>
+            <div>
+              <Textarea
+                value={bodyText}
+                onChange={(e) => setBodyText(e.target.value)}
+                className={cn(
+                  "w-full bg-transparent border-none shadow-none text-center outline-none resize-none overflow-hidden leading-relaxed",
+                  `font-[${bodyFont}]`
+                )}
+                style={{
+                  fontFamily: bodyFont,
+                  fontSize: bodySizeMap[bodySize] || "1.25rem",
+                }}
+                rows={3}
+              />
+            </div>
+          </div>
         </div>
-        <div>
-          <textarea
-            value={bodyText}
-            onChange={(e) => setBodyText(e.target.value)}
-            className={cn(
-              "w-full bg-transparent border-none text-center outline-none resize-none overflow-hidden leading-relaxed",
-              `font-[${bodyFont}]`
-            )}
-            style={{
-              fontFamily: bodyFont,
-              fontSize: bodySizeMap[bodySize] || "1.25rem", // Default to 1.25rem if size not found
-            }}
-            rows={3}
-          />
-        </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }

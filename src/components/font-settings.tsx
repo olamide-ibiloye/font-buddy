@@ -1,3 +1,12 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Label } from "@/components/ui/label";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { fontOptions } from "@/lib/fonts";
 import { useFontStore } from "@/lib/store";
 import FontSelector from "./font-selector";
@@ -15,60 +24,69 @@ export default function FontSettings() {
   } = useFontStore();
 
   return (
-    <div className="border p-6 rounded-lg">
-      <h2 className="text-xl font-semibold mb-4">Font Controls</h2>
-
-      <div className="space-y-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle className="text-xl">Font Settings</CardTitle>
+      </CardHeader>
+      <CardContent className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FontSelector
-            label="Heading Font"
+            label="Font Family"
             value={headingFont}
             onChange={setHeadingFont}
             options={fontOptions}
           />
 
-          <div className="space-y-2 w-full">
-            <label className="block text-sm font-medium">Heading Size</label>
-            <select
+          <div className="space-y-2">
+            <Label htmlFor="heading-size">Font Size</Label>
+            <Select
               value={headingSize}
-              onChange={(e) => setHeadingSize(e.target.value as any)}
-              className="w-full p-2 border rounded-md"
+              onValueChange={(value) => setHeadingSize(value as any)}
             >
-              <option value="3xl">Small</option>
-              <option value="4xl">Medium</option>
-              <option value="5xl">Large</option>
-              <option value="6xl">Extra Large</option>
-              <option value="7xl">Huge</option>
-              <option value="8xl">Massive</option>
-              <option value="9xl">Giant</option>
-            </select>
+              <SelectTrigger id="heading-size">
+                <SelectValue placeholder="Select size" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="3xl">Small (30px)</SelectItem>
+                <SelectItem value="4xl">Medium (36px)</SelectItem>
+                <SelectItem value="5xl">Large (48px)</SelectItem>
+                <SelectItem value="6xl">Extra Large (60px)</SelectItem>
+                <SelectItem value="7xl">Huge (72px)</SelectItem>
+                <SelectItem value="8xl">Massive (96px)</SelectItem>
+                <SelectItem value="9xl">Giant (128px)</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
 
-        <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <FontSelector
-            label="Body Font"
+            label="Font Family"
             value={bodyFont}
             onChange={setBodyFont}
             options={fontOptions}
           />
 
-          <div className="space-y-2 w-full">
-            <label className="block text-sm font-medium">Body Size</label>
-            <select
+          <div className="space-y-2">
+            <Label htmlFor="body-size">Font Size</Label>
+            <Select
               value={bodySize}
-              onChange={(e) => setBodySize(e.target.value as any)}
-              className="w-full p-2 border rounded-md"
+              onValueChange={(value) => setBodySize(value as any)}
             >
-              <option value="base">Small</option>
-              <option value="lg">Medium</option>
-              <option value="xl">Large</option>
-              <option value="2xl">Extra Large</option>
-              <option value="3xl">Huge</option>
-            </select>
+              <SelectTrigger id="body-size">
+                <SelectValue placeholder="Select size" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="base">Small (16px)</SelectItem>
+                <SelectItem value="lg">Medium (18px)</SelectItem>
+                <SelectItem value="xl">Large (20px)</SelectItem>
+                <SelectItem value="2xl">Extra Large (24px)</SelectItem>
+                <SelectItem value="3xl">Huge (30px)</SelectItem>
+              </SelectContent>
+            </Select>
           </div>
         </div>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
