@@ -1,5 +1,3 @@
-import { cn } from "@/lib/utils";
-
 interface FontSelectorProps {
   label: string;
   value: string;
@@ -7,11 +5,16 @@ interface FontSelectorProps {
   options: { name: string; value: string }[];
 }
 
-export default function FontSelector({ label, value, onChange, options }: FontSelectorProps) {
+export default function FontSelector({
+  label,
+  value,
+  onChange,
+  options,
+}: FontSelectorProps) {
   return (
-    <div className="space-y-2">
+    <div className="space-y-2 w-full">
       <label className="block text-sm font-medium">{label}</label>
-      <select 
+      <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
         className="w-full p-2 border rounded-md"

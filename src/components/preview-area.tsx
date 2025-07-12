@@ -1,49 +1,66 @@
+import { useFontStore } from "@/lib/store";
 import { cn } from "@/lib/utils";
 
-interface PreviewAreaProps {
-  headingFont: string;
-  bodyFont: string;
-  headingSize: string;
-  bodySize: string;
-  headingText: string;
-  bodyText: string;
-  onHeadingTextChange: (text: string) => void;
-  onBodyTextChange: (text: string) => void;
-}
+// Map font sizes to pixel values
+const headingSizeMap = {
+  "3xl": "1.875rem", // 30px
+  "4xl": "2.25rem", // 36px
+  "5xl": "3rem", // 48px
+  "6xl": "3.75rem", // 60px
+  "7xl": "4.5rem", // 72px
+  "8xl": "6rem", // 96px
+  "9xl": "8rem", // 128px
+};
 
-export default function PreviewArea({
-  headingFont,
-  bodyFont,
-  headingSize,
-  bodySize,
-  headingText,
-  bodyText,
-  onHeadingTextChange,
-  onBodyTextChange
-}: PreviewAreaProps) {
+const bodySizeMap = {
+  base: "1rem", // 16px
+  lg: "1.125rem", // 18px
+  xl: "1.25rem", // 20px
+  "2xl": "1.5rem", // 24px
+  "3xl": "1.875rem", // 30px
+};
+
+export default function PreviewArea() {
+  const {
+    headingFont,
+    bodyFont,
+    headingSize,
+    bodySize,
+    headingText,
+    bodyText,
+    setHeadingText,
+    setBodyText,
+  } = useFontStore();
+
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-sm border min-h-[400px] flex flex-col justify-center">
-      <div className="max-w-3xl mx-auto w-full space-y-6">
+    <div className="min-h-[400px] flex flex-col justify-center">
+      <div className="max-w-2xl mx-auto w-full space-y-6">
         <div>
           <textarea
             value={headingText}
-            onChange={(e) => onHeadingTextChange(e.target.value)}
+            onChange={(e) => setHeadingText(e.target.value)}
             className={cn(
-              `w-full bg-transparent border-none outline-none resize-none overflow-hidden text-${headingSize} font-bold leading-tight`,
+              "w-full bg-transparent text-center border-none outline-none resize-none overflow-hidden font-bold leading-tight",
               `font-[${headingFont}]`
             )}
-            style={{ fontFamily: headingFont }}
+            style={{
+              fontFamily: headingFont,
+              fontSize: headingSizeMap[headingSize] || "6rem", // Default to 6rem if size not found
+            }}
           />
         </div>
         <div>
           <textarea
             value={bodyText}
-            onChange={(e) => onBodyTextChange(e.target.value)}
+            onChange={(e) => setBodyText(e.target.value)}
             className={cn(
-              `w-full bg-transparent border-none outline-none resize-none overflow-hidden text-${bodySize} leading-relaxed`,
+              "w-full bg-transparent border-none text-center outline-none resize-none overflow-hidden leading-relaxed",
               `font-[${bodyFont}]`
             )}
-            style={{ fontFamily: bodyFont }}
+            style={{
+              fontFamily: bodyFont,
+              fontSize: bodySizeMap[bodySize] || "1.25rem", // Default to 1.25rem if size not found
+            }}
             rows={3}
           />
         </div>
