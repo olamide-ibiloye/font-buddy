@@ -118,7 +118,7 @@ export default function RootLayout({
               }}
             />
           </div>
-          <main className="flex flex-col gap-8 flex-1 max-w-4xl  mx-auto max-md:px-5">
+          <main className="flex flex-col gap-8 flex-1 max-w-4xl mx-auto">
             {children}
           </main>
         </ThemeProvider>

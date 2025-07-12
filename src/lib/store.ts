@@ -26,8 +26,8 @@ export const useFontStore = create<FontState>((set) => ({
   // Initial state
   headingFont: "Geist",
   bodyFont: "Geist",
-  headingSize: "6xl",
-  bodySize: "xl",
+  headingSize: "5xl",
+  bodySize: "lg",
   headingText: "Magically simplify typography",
   bodyText:
     "Test different font combinations for your web projects. Find the perfect pairing for your design.",
