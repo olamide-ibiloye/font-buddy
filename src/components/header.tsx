@@ -6,7 +6,9 @@ import ModeToggle from "./mode-toggle";
 const Header = () => {
   return (
     <header className="flex justify-between items-center py-4  mx-auto w-full">
-      <h1 className="text-2xl font-bold">FontBuddy</h1>
+      <h1 className="text-2xl ">
+        Font<span className="font-bold">Buddy</span>
+      </h1>
 
       <div className="flex justify-between items-center gap-6">
         <ModeToggle />

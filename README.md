@@ -60,7 +60,7 @@ http://localhost:3000
 
 ## 💡 Roadmap
 
-- [ ] Font size adjustment for heading and body
+- [x] Font size adjustment for heading and body
 - [ ] Export Tailwind/CSS code snippets
 - [ ] Save and share font pair links
 - [ ] Font category filters (serif, sans, mono, etc.)
