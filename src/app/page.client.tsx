@@ -7,7 +7,7 @@ import PreviewArea from "@/components/preview-area";
 
 const HomeContent = () => {
   return (
-    <div className="min-h-screen px-4 py-4 flex flex-col gap-8">
+    <div className="min-h-screen max-md:px-4 py-4 flex flex-col gap-8">
       <Header />
       <div className="flex-1 flex flex-col gap-8">
         <PreviewArea />
